@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Information - HomeDecor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .shipping-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shipping-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+        
+        .shipping-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 1s ease-out;
+        }
+        
+        .shipping-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+        
+        .shipping-content {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+        
+        .shipping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .shipping-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardSlideIn 0.8s ease forwards;
+        }
+        
+        .shipping-card:nth-child(1) { animation-delay: 0.1s; }
+        .shipping-card:nth-child(2) { animation-delay: 0.2s; }
+        .shipping-card:nth-child(3) { animation-delay: 0.3s; }
+        .shipping-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .shipping-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+        
+        .shipping-card .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .shipping-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .shipping-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .timeline {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline h2 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: timelineSlide 0.8s ease forwards;
+        }
+        
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes timelineSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <h2>HomeDecor</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <div class="live-clock" id="liveClock"></div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search products..." id="searchInput">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                        <i class="fas fa-moon" id="darkModeIcon"></i>
+                    </div>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="user-icon" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <div class="user-menu" id="userMenu">
+                            <a href="admin.html"><i class="fas fa-cog"></i> Admin Panel</a>
+                            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+                            <a href="#" onclick="showProfile()"><i class="fas fa-user-circle"></i> Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Shipping Hero Section -->
+    <section class="shipping-hero">
+        <div class="container">
+            <h1><i class="fas fa-shipping-fast"></i> Shipping Information</h1>
+            <p>Fast, reliable, and secure delivery to your doorstep</p>
+        </div>
+    </section>
+
+    <!-- Shipping Content -->
+    <section class="shipping-content">
+        <div class="container">
+            <div class="shipping-grid">
+                <div class="shipping-card">
+                    <div class="icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Free Standard Shipping</h3>
+                    <p>Enjoy free standard shipping on all orders over $75. Delivery within 5-7 business days to most locations.</p>
+                </div>
+                
+                <div class="shipping-card">
+                    <div class="icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Express Delivery</h3>
+                    <p>Need it faster? Choose express delivery for 2-3 business day delivery. Additional charges apply.</p>
+                </div>
+                
+                <div class="shipping-card">
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Same Day Delivery</h3>
+                    <p>Available in select cities. Order before 2 PM for same-day delivery. Perfect for last-minute needs.</p>
+                </div>
+                
+                <div class="shipping-card">
+                    <div class="icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>International Shipping</h3>
+                    <p>We ship worldwide! International delivery takes 7-14 business days. Customs fees may apply.</p>
+                </div>
+            </div>
+
+            <!-- Shipping Timeline -->
+            <div class="timeline">
+                <h2>Your Order Journey</h2>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Order Confirmed</h4>
+                        <p>Your order is received and payment is processed</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Order Packed</h4>
+                        <p>Items are carefully packed and prepared for shipment</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>In Transit</h4>
+                        <p>Your package is on its way to you</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Delivered</h4>
+                        <p>Package delivered to your doorstep</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Service Navigation -->
+    <section class="cs-navigation">
+        <div class="container">
+            <h3>Other Customer Service Options</h3>
+            <div class="cs-nav-grid">
+                <a href="returns.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h4>Returns & Exchanges</h4>
+                    <p>Easy 30-day return policy</p>
+                </a>
+                
+                <a href="size-guide.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h4>Size Guide</h4>
+                    <p>Find your perfect fit</p>
+                </a>
+                
+                <a href="faq.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h4>FAQ</h4>
+                    <p>Common questions answered</p>
+                </a>
+                
+                <a href="support.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>Customer Support</h4>
+                    <p>Get help from our team</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .cs-navigation {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 4rem 0;
+            margin-top: 2rem;
+        }
+        
+        .cs-navigation h3 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .cs-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cs-nav-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: navCardSlide 0.6s ease forwards;
+        }
+        
+        .cs-nav-card:nth-child(1) { animation-delay: 0.1s; }
+        .cs-nav-card:nth-child(2) { animation-delay: 0.2s; }
+        .cs-nav-card:nth-child(3) { animation-delay: 0.3s; }
+        .cs-nav-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes navCardSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cs-nav-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+        
+        .cs-nav-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cs-nav-card:hover .cs-nav-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .cs-nav-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .cs-nav-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

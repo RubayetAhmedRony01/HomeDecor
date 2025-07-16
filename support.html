@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support - HomeDecor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .support-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .support-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 15s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        .support-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: heartBeat 1.5s ease-in-out;
+        }
+        
+        .support-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .support-content {
+            padding: 4rem 0;
+            background: var(--bg-primary);
+        }
+        
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .support-card {
+            background: var(--bg-secondary);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px) rotateX(45deg);
+            animation: cardReveal 0.8s ease forwards;
+        }
+        
+        .support-card:nth-child(1) { animation-delay: 0.1s; }
+        .support-card:nth-child(2) { animation-delay: 0.3s; }
+        .support-card:nth-child(3) { animation-delay: 0.5s; }
+        .support-card:nth-child(4) { animation-delay: 0.7s; }
+        
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+        
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .support-card:hover::before {
+            left: 100%;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px var(--shadow-medium);
+        }
+        
+        .support-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0,0,0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -30px, 0);
+            }
+            70% {
+                transform: translate3d(0, -15px, 0);
+            }
+            90% {
+                transform: translate3d(0, -4px, 0);
+            }
+        }
+        
+        .support-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .support-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .support-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .support-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        .live-chat {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .live-chat h2 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .live-chat p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .chat-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #27ae60;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(39, 174, 96, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(39, 174, 96, 0);
+            }
+        }
+        
+        .chat-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .chat-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(39, 174, 96, 0.4);
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .contact-method {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: scale(0.8);
+            animation: methodPop 0.6s ease forwards;
+        }
+        
+        .contact-method:nth-child(1) { animation-delay: 0.2s; }
+        .contact-method:nth-child(2) { animation-delay: 0.4s; }
+        .contact-method:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes methodPop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-10px);
+        }
+        
+        .contact-method i {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-method h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-method p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .ticket-form {
+            background: var(--bg-secondary);
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 15px 35px var(--shadow-light);
+        }
+        
+        .ticket-form h2 {
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-group label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: var(--bg-secondary);
+            padding: 0 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-primary);
+            outline: none;
+            box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
+        }
+        
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group select:focus + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.4);
+        }
+        
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.3);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.3);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    <h2>HomeDecor</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <div class="live-clock" id="liveClock"></div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search products..." id="searchInput">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle Dark Mode">
+                        <i class="fas fa-moon" id="darkModeIcon"></i>
+                    </div>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="user-icon" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                        <div class="user-menu" id="userMenu">
+                            <a href="admin.html"><i class="fas fa-cog"></i> Admin Panel</a>
+                            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+                            <a href="#" onclick="showProfile()"><i class="fas fa-user-circle"></i> Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Support Hero Section -->
+    <section class="support-hero">
+        <div class="container">
+            <h1><i class="fas fa-headset"></i> Customer Support</h1>
+            <p>We're here to help you every step of the way</p>
+        </div>
+    </section>
+
+    <!-- Support Content -->
+    <section class="support-content">
+        <div class="container">
+            <!-- Support Options -->
+            <div class="support-options">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Get instant help from our support team. Available 24/7 for immediate assistance with your questions.</p>
+                    <a href="#" class="support-btn" onclick="startLiveChat()">Start Chat</a>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone Support</h3>
+                    <p>Speak directly with our customer service representatives. Call us for personalized assistance.</p>
+                    <a href="tel:+1555123456" class="support-btn">Call Now</a>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Support</h3>
+                    <p>Send us detailed questions and we'll respond within 24 hours with comprehensive solutions.</p>
+                    <a href="mailto:support@homedecor.com" class="support-btn">Send Email</a>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Support Ticket</h3>
+                    <p>Create a support ticket for complex issues. Track progress and get detailed assistance.</p>
+                    <a href="#ticket-form" class="support-btn">Create Ticket</a>
+                </div>
+            </div>
+
+            <!-- Live Chat Section -->
+            <div class="live-chat">
+                <h2>Need Immediate Help?</h2>
+                <p>Our live chat support is available 24/7 to assist you with any questions or concerns.</p>
+                <div class="chat-status">
+                    <i class="fas fa-circle"></i>
+                    <span>Support Team Online</span>
+                </div>
+                <a href="#" class="chat-btn" onclick="startLiveChat()">
+                    <i class="fas fa-comments"></i> Start Live Chat
+                </a>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <i class="fas fa-clock"></i>
+                    <h4>Business Hours</h4>
+                    <p>Monday - Friday: 9AM - 8PM<br>
+                    Saturday: 10AM - 6PM<br>
+                    Sunday: 12PM - 5PM</p>
+                </div>
+                
+                <div class="contact-method">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Visit Our Store</h4>
+                    <p>123 Design Street<br>
+                    New York, NY 10001<br>
+                    United States</p>
+                </div>
+                
+                <div class="contact-method">
+                    <i class="fas fa-globe"></i>
+                    <h4>Social Media</h4>
+                    <p>Follow us for updates and quick support on Facebook, Twitter, and Instagram</p>
+                </div>
+            </div>
+
+            <!-- Support Ticket Form -->
+            <div class="ticket-form" id="ticket-form">
+                <h2>Create Support Ticket</h2>
+                <form id="supportTicketForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <input type="text" placeholder=" " required>
+                            <label>Full Name</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" placeholder=" " required>
+                            <label>Email Address</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" placeholder=" ">
+                            <label>Order Number (if applicable)</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Issue Type</option>
+                                <option value="order">Order Issue</option>
+                                <option value="shipping">Shipping Problem</option>
+                                <option value="return">Return/Exchange</option>
+                                <option value="product">Product Question</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label>Issue Type</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea rows="6" placeholder=" " required></textarea>
+                        <label>Describe Your Issue</label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Ticket
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Service Navigation -->
+    <section class="cs-navigation">
+        <div class="container">
+            <h3>Other Customer Service Options</h3>
+            <div class="cs-nav-grid">
+                <a href="shipping-info.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h4>Shipping Information</h4>
+                    <p>Fast & reliable delivery</p>
+                </a>
+                
+                <a href="returns.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <h4>Returns & Exchanges</h4>
+                    <p>Easy 30-day return policy</p>
+                </a>
+                
+                <a href="size-guide.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h4>Size Guide</h4>
+                    <p>Find your perfect fit</p>
+                </a>
+                
+                <a href="faq.html" class="cs-nav-card">
+                    <div class="cs-nav-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h4>FAQ</h4>
+                    <p>Common questions answered</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .cs-navigation {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            padding: 4rem 0;
+            margin-top: 2rem;
+        }
+        
+        .cs-navigation h3 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .cs-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cs-nav-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: navCardSlide 0.6s ease forwards;
+        }
+        
+        .cs-nav-card:nth-child(1) { animation-delay: 0.1s; }
+        .cs-nav-card:nth-child(2) { animation-delay: 0.2s; }
+        .cs-nav-card:nth-child(3) { animation-delay: 0.3s; }
+        .cs-nav-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes navCardSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cs-nav-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+        
+        .cs-nav-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cs-nav-card:hover .cs-nav-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .cs-nav-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .cs-nav-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <script src="js/main.js"></script>
+    <script>
+        function startLiveChat() {
+            // Simulate live chat opening
+            alert('Live chat would open here! This is a demo - in a real implementation, this would connect to your chat system.');
+        }
+
+        // Form submission
+        document.getElementById('supportTicketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Support ticket submitted successfully! You will receive a confirmation email shortly.');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Smooth scroll to ticket form
+        document.querySelectorAll('a[href="#ticket-form"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('ticket-form').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
